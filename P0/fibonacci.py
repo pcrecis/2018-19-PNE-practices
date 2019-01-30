@@ -1,11 +1,9 @@
-print("Adding the fibonacci terms from 1 to n. In this case the n parameter is a constant: '100'")
+print("Adding the fibonacci terms from 1 to n.")
+n = int(input("Please, introduce n: "))
 
-def fib(n):
-    a, b = 0,1
-    while a < n:
-        print(a, end=' ')
-        a, b = b, a+b
-    print()
-    return
-
-fib(100)
+def fibonacci(n):
+    a, b = 1,1
+    for i in range(n-2):
+        a, b = b,a+b
+    return a
+print(fibonacci(n))
