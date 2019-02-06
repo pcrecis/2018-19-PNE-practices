@@ -11,18 +11,13 @@ def count_a(seq):
     return result
 
 # Main program
-s = input("Please enter the sequence: ")
+
+s = "AGTACACTGGT"
 na = count_a(s)
 print("The number of As is: {}".format(na))
 
-# Calculate the total sequence length
-tl = len(s)
+# Calculate the total length
+t1 = len(s)
 
-# Calculate the percentage of As in the sequence
-if tl > 0:
-    perc = round(100.0 * na / tl, 1)
-else:
-    perc = 0
-
-print("The total length is: {}".format(tl))
-print("The percentage of As is: {}%".format(perc))
+print("This sequence is {} bases in length".format(t1))
+print("The percentage of As is {}%".format(round(100.0 * na/t1, 1)))
