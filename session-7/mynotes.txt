@@ -1,0 +1,40 @@
+Here i will take my notes:
+
+Client-Server model client(request)- Server(response)
+The client starts the communication and the server always listens, then generate the data and a response.
+If there is no client it is not a problem, the server waits until there is a client, but the other way around
+if there is not server, there is a problem, so make sure that you run the server and ckeck that it is connected.
+
+These programs are running inside a computer/phone/tablet or any device with a microprocessor.
+Inside a computer there are a lot of programs not just 1. You can run the client and the server in the same
+computer. Client and server they connect with each other with the internet. There are many compiuters
+connected in networks (network interface).
+For sending something to the server we have to identify the machine and that is called IP address. 1 machine
+can have more than 1 IP address depending on how many machines is connected to. IP is not like an identification.
+* write ifconfig in the terminal to see what is the IP of our computer
+* ping "IP"
+URC to identify
+If in the same computer there are 2 or more serves we have to say the IP address and the port number of the server
+even if there is only 1 server you have to give always 2 numbers to conect with the server (IP and port)
+
+
+
+My phone IP address at URJC is 10.0.54.160
+Teacher's IP address at URJC is 212.128.253.64
+My computer IP address at URJC is 212.128.253.98
+
+* ping time to 8.8.8.8: time=3.49 ms
+
+* ping time to my computer: time=0.061 ms
+
+*ping time to a computer in the same network (212.128. 253.99): time=0.594 ms
+
+*ping time to my phone: time=8.62 ms
+
+*ping time to the teacher's computer: time=0.588 ms
+
+*ping to github.com (140.82.118.3): time=29.2 ms
+
+*ping to urjc.es (212.128.240.50): time=2.08 ms
+
+THIS IS A TEXT EXAMPLE FOR ADDING TO MY FILETHIS IS A TEXT EXAMPLE FOR ADDING TO MY FILE
