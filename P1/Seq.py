@@ -23,33 +23,13 @@ class Seq:
     def reverse(self):
         return self.strbases[::-1]
 
-    def count_base(self, base):
+    def count_bases(self, base):
         counter = 0
         for b in self.strbases:
             if b == base:
-                counter = 0
+                counter += 1
         return counter
 
     def perc(self, base):
-        self.count(base) * 100.0 */ self.len()
-
-s1 = Seq("AAAGG")
-
-str1 = s1.strbases   # atribute inside the code
-#str2 = s2.strbases
-
-l1 = s1.len()
-c1 = s1.complement()
-r1 = s1.reverse()
-counter_A = s1.count('A')
-counter_C = s1.count('C')
-counter_T = s1.count('T')
-counter_G = s1.count('G')
-
-#l2 = s2.len()
-
-print("Sequence 1: {}".format(str1))
-print(" Length: {}".format(l1))
-print("Complementary sequence: {}".format(c1))
-print("Reverse sequence: {}".format(r1))
+        return round(self.count_bases(base) * 100.0 / self.len(), 1)
 
