@@ -2,8 +2,8 @@ import socket
 import termcolor
 
 # SERVER IP, PORT
-PORT = 8094
-IP = "212.128.253.105"
+PORT = 8095
+IP = "192.168.0.161"
 
 while True:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -31,6 +31,6 @@ while True:
     response = s.recv(2048).decode('utf-8')
 
     # Print the server's response
-    termcolor.cprint("Response: {}".format(response), 'red')
+    termcolor.cprint("Response: \n{}".format(response), 'red')
 
     s.close()
