@@ -4,8 +4,8 @@ import termcolor
 from Seq import Seq
 
 # Configure the Server's IP and PORT
-PORT = 8095
-IP = "192.168.0.161"
+PORT = 8096
+IP = "212.128.253.99"
 MAX_OPEN_REQUESTS = 5
 
 def valid_characters(seq):
@@ -54,6 +54,7 @@ try:
                 new_msg += message
                 termcolor.cprint('Message from client: {}'.format(note), 'blue')
                 s1 = Seq(note[0])
+                note.pop(0)
                 for i in range(len(note)):
                     if note[i] == 'len':
                         tl = s1.len()
