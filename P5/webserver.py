@@ -4,7 +4,6 @@ import socketserver
 # Define the Server's port
 PORT = 8003
 
-
 class TestHandler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
