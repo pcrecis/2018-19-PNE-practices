@@ -29,6 +29,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             f.close()
         elif "msg" in self.path:
             msg_sent = self.path.split("&")
+            print(msg_sent)
             seq = msg_sent[0][msg_sent[0].find("=") +1:]
             if valid_characters(seq):
                 content = ("""<!DOCTYPE html>
@@ -39,33 +40,44 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                             </head>
                             <body style="background-color: lightpink;">
                                 <h1>Echo</h1>
-                                <p>Sequence: {}</p>
+                                <p>{}</p>
                                 <br>
-                                <p>Len: {}</p>
+                                <p>{}</p>
                                 <br>
-                                <p>Len: {}</p>
+                                <p>{}</p>
+                                <br>
                                 <a href="/">Main page</a>
                             </body>
                             </html.>""")
+
+                sequence = ""
                 length = ""
+                operation = ""
+
+                sequence += "Sequence: " + str(seq)
 
                 for i in range(len(msg_sent)):
-                    if "chk" in self.path:
+                    if "chk" in msg_sent[i]:
                         tl = seq.len()
+                        length += "Len:" + str(tl)
+                    elif "base" in msg_sent[i]:
+                        base = msg_sent[i].split("=")
+                        b = base[1]
+                    elif "operation" in msg_sent[i]:
+                        oper = msg_sent[i].split("=")
+                        if oper[1] == "count":
+                            counter = seq.strbases.count_bases(b)
+                            operation += "Base {} appears {} times in the sequence".format(b, str(counter))
+                        elif oper[1] == "perc":
+                            perc = seq.strbases.perc(b)
+                            operation += "The percentage for base {} is: {}".format(b, str(perc))
+
+            content = content.format(sequence, length, operation)
 
             else:
-                content = ("""<!DOCTYPE html>
-                            <html lang="en">
-                            <head>
-                                <meta charset="UTF-8">
-                                <title>Echo of the received message:</title>
-                            </head>
-                            <body style="background-color: lightgreen;">
-                                <h1>Echo</h1>
-                                <p>{}</p>
-                                <a href="/">Main page</a>
-                            </body>
-                            </html.>""".format(msg_sent.lower()))
+                f = open("error.html")
+                content = f.read()
+                f.close()
 
         else:
             f = open("error.html")
