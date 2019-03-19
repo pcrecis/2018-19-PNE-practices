@@ -2,8 +2,8 @@ import socket
 import termcolor
 
 # SERVER IP, PORT
-PORT = 8095
-IP = "192.168.0.161"
+PORT = 8096
+IP = "212.128.253.99"
 
 while True:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

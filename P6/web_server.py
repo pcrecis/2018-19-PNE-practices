@@ -3,7 +3,7 @@ import socketserver
 import termcolor
 from Seq import Seq
 
-PORT = 8001
+PORT = 8003
 
 
 def valid_characters(seq):
@@ -31,6 +31,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             msg_sent = self.path.split("&")
             print(msg_sent)
             seq = msg_sent[0][msg_sent[0].find("=") +1:]
+            print(seq)
             if valid_characters(seq):
                 content = ("""<!DOCTYPE html>
                             <html lang="en">
@@ -55,11 +56,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 operation = ""
 
                 sequence += "Sequence: " + str(seq)
+                print(sequence)
 
                 for i in range(len(msg_sent)):
-                    if "chk" in msg_sent[i]:
+                    if "chk=on" in msg_sent[i]:
                         tl = seq.len()
                         length += "Len:" + str(tl)
+                        print(length)
                     elif "base" in msg_sent[i]:
                         base = msg_sent[i].split("=")
                         b = base[1]
@@ -68,17 +71,18 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         if oper[1] == "count":
                             counter = seq.strbases.count_bases(b)
                             operation += "Base {} appears {} times in the sequence".format(b, str(counter))
+                            print(operation)
                         elif oper[1] == "perc":
                             perc = seq.strbases.perc(b)
                             operation += "The percentage for base {} is: {}".format(b, str(perc))
+                            print(operation)
 
-            content = content.format(sequence, length, operation)
+                content = content.format(sequence, length, operation)
 
             else:
                 f = open("error.html")
                 content = f.read()
                 f.close()
-
         else:
             f = open("error.html")
             content = f.read()
