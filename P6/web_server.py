@@ -3,7 +3,7 @@ import socketserver
 import termcolor
 from Seq import Seq
 
-PORT = 8003
+PORT = 8002
 
 
 def valid_characters(seq):
@@ -32,7 +32,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             print(msg_sent)
             seq = msg_sent[0][msg_sent[0].find("=") +1:]
             print(seq)
-            if valid_characters(seq):
+            if valid_characters(seq.upper()):
                 content = ("""<!DOCTYPE html>
                             <html lang="en">
                             <head>
@@ -51,6 +51,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                             </body>
                             </html.>""")
 
+                seq = Seq(seq)
                 sequence = ""
                 length = ""
                 operation = ""
@@ -69,11 +70,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     elif "operation" in msg_sent[i]:
                         oper = msg_sent[i].split("=")
                         if oper[1] == "count":
-                            counter = seq.strbases.count_bases(b)
+                            counter = seq.count_bases(b)
                             operation += "Base {} appears {} times in the sequence".format(b, str(counter))
                             print(operation)
                         elif oper[1] == "perc":
-                            perc = seq.strbases.perc(b)
+                            perc = seq.perc(b)
                             operation += "The percentage for base {} is: {}".format(b, str(perc))
                             print(operation)
 
