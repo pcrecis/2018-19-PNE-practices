@@ -6,24 +6,8 @@ import json
 
 # -- API information
 HOSTNAME = "www.metaweather.com"
-
 capital = input("Introduce the capital you want information about: ")
-
-#woeid = capital['woeid']
-
 ENDPOINT = "/api/location/search/?query={}".format(capital)
-print(ENDPOINT)
-
-WOEID = ENDPOINT['woeid']
-print(WOEID)
-
-# -- For the location we have to use the
-# -- Were on earth identifier
-# -- London woeid = 44418
-# -- Madrid woeid = 766273
-
-#woeid = input("Introduce the capital you want information about: ")
-#LOCATION_WOEID = "/search/?query={}".format(woeid)
 METHOD = "GET"
 
 # -- Here we can define special headers if needed
@@ -37,7 +21,7 @@ conn = http.client.HTTPSConnection(HOSTNAME)
 
 # -- Send the request. No body (None)
 # -- Use the defined headers
-conn.request(METHOD, ENDPOINT + WOEID + '/', None, headers)
+conn.request(METHOD, ENDPOINT, None, headers)
 
 # -- Wait for the server's response
 r1 = conn.getresponse()
@@ -57,6 +41,20 @@ conn.close()
 # print(text_json)
 
 # -- Generate the object from the json file
+weather = json.loads(text_json)
+print(weather)
+
+WOEID = str(weather[0]['woeid'])
+
+ENDPOINT = "/api/location/"   # Second
+
+conn.request(METHOD, ENDPOINT + WOEID + '/', None, headers)
+r1 = conn.getresponse()
+print()
+print("Response received: ", end='')
+print(r1.status, r1.reason)
+text_json = r1.read().decode("utf-8")
+conn.close()
 weather = json.loads(text_json)
 
 # -- Get the data
