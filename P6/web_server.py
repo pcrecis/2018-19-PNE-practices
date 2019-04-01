@@ -31,7 +31,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             msg_sent = self.path.split("&")
             print(msg_sent)
             seq = msg_sent[0][msg_sent[0].find("=") +1:]
-            print(seq)
+            seq = seq.upper()
             if valid_characters(seq.upper()):
                 content = ("""<!DOCTYPE html>
                             <html lang="en">
@@ -42,27 +42,23 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                             <body style="background-color: lightpink;">
                                 <h1>Echo</h1>
                                 <p>{}</p>
-                                <br>
                                 <p>{}</p>
-                                <br>
                                 <p>{}</p>
-                                <br>
                                 <a href="/">Main page</a>
                             </body>
                             </html.>""")
 
-                seq = Seq(seq)
                 sequence = ""
-                length = ""
-                operation = ""
-
                 sequence += "Sequence: " + str(seq)
                 print(sequence)
+                length = ""
+                operation = ""
+                seq = Seq(seq)
 
                 for i in range(len(msg_sent)):
                     if "chk=on" in msg_sent[i]:
                         tl = seq.len()
-                        length += "Len:" + str(tl)
+                        length += "Len: " + str(tl)
                         print(length)
                     elif "base" in msg_sent[i]:
                         base = msg_sent[i].split("=")
@@ -71,11 +67,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         oper = msg_sent[i].split("=")
                         if oper[1] == "count":
                             counter = seq.count_bases(b)
-                            operation += "Base {} appears {} times in the sequence".format(b, str(counter))
+                            operation += "Base {} appears {} times in the sequence.".format(b, str(counter))
                             print(operation)
                         elif oper[1] == "perc":
                             perc = seq.perc(b)
-                            operation += "The percentage for base {} is: {}".format(b, str(perc))
+                            operation += "The percentage for base {} is: {} %.".format(b, str(perc))
                             print(operation)
 
                 content = content.format(sequence, length, operation)
