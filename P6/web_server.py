@@ -37,10 +37,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                             <html lang="en">
                             <head>
                                 <meta charset="UTF-8">
-                                <title>RESPONSEOF THE SEQUENCE RECEIVED:</title>
+                                <title>RESPONSE OF THE SEQUENCE RECEIVED:</title>
                             </head>
                             <body style="background-color: lightpink;">
-                                <h1>Echo</h1>
+                                <h1>RESPONSE</h1>
                                 <p>{}</p>
                                 <p>{}</p>
                                 <p>{}</p>
